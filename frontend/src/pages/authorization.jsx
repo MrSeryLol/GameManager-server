@@ -1,34 +1,39 @@
-import { Avatar, Box, Button, Container, TextField, Typography,CssBaseline,Grid,Link } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Avatar, Box, Button, Container, TextField, Typography, CssBaseline, Grid, Link } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LOGIN_ROUTE } from '../utils/constants';
+import { observer } from 'mobx-react-lite';
+import { login } from '../API/authAPI';
+import { Context } from '..';
 // import { login } from '../http/userAPI';
 // import { useUser } from '../store/store';
 
 
-const Authorization = () => {
-    // const signIn = async (e) => {
-    //     try {
-    //         e.preventDefault();
-    //         const response = await login(authlogin,password);
-    //         newRole(response.role);
-    //         SetIsAuth(true);
-    //         navigate("/main");
-    //     } catch (e) {
-    //         SetMes(e.response.data.message);
-    //         alert(mes);
-    //         setOpen(true);
-    //         setLogin("");
-    //         setPassword("");
-    //     }
-    // }
-    // const newRole = useUser((state) => (state.SetRole));
-    // const {mes,SetMes} = useUser((state) => ({mes: state.errorMessage, SetMes: state.SetMes}));
-    // const {isAuth,SetIsAuth} = useUser((state) => ({ isAuth: state.isAuth, SetIsAuth : state.SetIsAuth}));
-    // const [authlogin,setLogin] = useState("");
-    // const [password,setPassword] = useState("");
-    // const [open,setOpen] = useState(false);
-    // const navigate = useNavigate();
+const Authorization = observer(() => {
+    const { user } = useContext(Context)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const isLogin = location.pathname === LOGIN_ROUTE
+
+    const [authLogin, setAuthLogin] = useState("")
+    const [authPassword, setAuthPassword] = useState("")
+
+    const logIn = async (e) => {
+        try {
+            let data
+            console.log("Нажали на кнопку")
+            e.preventDefault()
+            data = await login(authLogin, authPassword)
+            console.log(data)
+            user.setUser(user)
+            user.setIsAuth(true);
+            navigate("/")
+        } catch (err) {
+            alert(err)
+        }
+
+    }
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -56,8 +61,8 @@ const Authorization = () => {
                         label='Логин'
                         name='login'
                         autoFocus
-                        // value={authlogin}
-                        // onChange={e =>setLogin(e.target.value)}
+                        value={authLogin}
+                        onChange={e => setAuthLogin(e.target.value)}
                     />
                     <TextField
                         color='secondary'
@@ -68,16 +73,16 @@ const Authorization = () => {
                         label='Пароль'
                         type='password'
                         id='password'
-                        // value={password}
-                        // onChange={e =>setPassword(e.target.value)}
+                        value={authPassword}
+                        onChange={e => setAuthPassword(e.target.value)}
                     />
                     <Button
                         color='secondary'
                         type='submit'
                         fullWidth
                         variant='contained'
-                        sx={{mt: 3, mb: 2, bgcolor: "#1e082b"}}
-                        // onClick={signIn}
+                        sx={{ mt: 3, mb: 2, bgcolor: "#1e082b" }}
+                        onClick={logIn}
                     >
                         Войти
                     </Button>
@@ -92,6 +97,6 @@ const Authorization = () => {
             </Box>
         </Container>
     );
-};
+});
 
 export default Authorization;

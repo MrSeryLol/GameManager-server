@@ -1,8 +1,5 @@
 import React from "react";
-import Offcanvas from 'react-bootstrap/Offcanvas'
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
-//import { Card, Container, ListGroup, ListGroupItem } from "react-bootstrap"
 import { Typography, Grid, Box, Container, List, ListSubheader, ListItemButton, ListItemText } from "@mui/material";
 
 const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller'];
@@ -10,7 +7,7 @@ const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', '
 const Sidebar = () => {
     return (
         <>
-         <Container sx={{ mt: 2}}>
+         <Container sx={{ mt: 2 }}>
         
             <ListSubheader>Популярные жанры</ListSubheader>
             <List sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
