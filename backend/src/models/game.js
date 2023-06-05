@@ -9,6 +9,7 @@ const GameSchema = new Schema({
     genres: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
     userTags: [{ type: Schema.Types.ObjectId, ref: "UserTag" }],
     users: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    type: [{ type: String, enum: ["Браузерная", "Компьютерная"]}]
 })
 
 export const Game = mongoose.model("Game", GameSchema)
