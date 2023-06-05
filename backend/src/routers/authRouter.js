@@ -10,8 +10,4 @@ router.post("/registration", [
 ], authController.registration)
 router.post("/login", authController.login)
 
-//router.get("/", homeController.getHomeInfo)
-// router.post('/registration', HomeController)
-// router.post('/login', authController.login)
-
 export const authRouter = router;

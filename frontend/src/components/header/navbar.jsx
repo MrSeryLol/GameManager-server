@@ -18,7 +18,12 @@ import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 const pages = ['Компьютерные игры', 'Браузерные игры'];
-const settings = ['Профиль', 'Игровая компания', "Админка", 'Выйти'];
+const settings = [
+    {button: 'Профиль', link: "#"}, 
+    {button: 'Игровая компания', link: "/devpage"}, 
+    {button: "Админка", link: "/admin"}, 
+    {button: 'Выйти', link: ""}
+];
 
 const Navbar = observer(() => {
 
@@ -40,6 +45,8 @@ const Navbar = observer(() => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+
 
     return (
         <AppBar position="static" sx={{ backgroundColor: "#1e082b" }}>
@@ -134,9 +141,9 @@ const Navbar = observer(() => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
+                                {settings.map((setting, index) => (
+                                    <MenuItem component={Link} key={index} to={setting.link} onClick={handleCloseUserMenu}>
+                                        {setting.button}
                                     </MenuItem>
                                 ))}
                             </Menu>

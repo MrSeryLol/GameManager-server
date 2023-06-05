@@ -1,7 +1,7 @@
 import ErrorAPI from "../error/errorAPI.js"
 import Jwt from "jsonwebtoken"
 
-export default function (req, res, next) {
+function authMiddleware(req, res, next) {
     if (req.method === 'OPTIONS') {
         next()
     }
@@ -12,7 +12,7 @@ export default function (req, res, next) {
             return next(ErrorAPI.unauthorized('Пользователь не авторизован!'))
         }
 
-        const decoded = jwt.verify(token, process.env.SECRET_KEY)
+        const decoded = Jwt.verify(token, process.env.SECRET_KEY)
         req.userInfo = decoded
         next()
         
@@ -20,3 +20,5 @@ export default function (req, res, next) {
         next(ErrorAPI.unauthorized(`${err.message} пользователь не авторизован!`))
     }
 }
+
+export {authMiddleware}

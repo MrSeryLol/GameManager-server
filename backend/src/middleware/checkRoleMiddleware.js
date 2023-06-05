@@ -1,8 +1,9 @@
 import ErrorAPI from "../error/errorAPI.js"
 import Jwt from "jsonwebtoken"
+import { Role } from "../models/role.js"
 
-export default function(role) {
-    return function (req, res, next) {
+function checkRoleMiddleware(role) {
+    return async function (req, res, next) {
         if (req.method === 'OPTIONS') {
             next()
         }
@@ -13,10 +14,13 @@ export default function(role) {
                 return next(ErrorAPI.unauthorized('Пользователь не авторизован!'))
             }
 
-            const decoded = jwt.verify(token, process.env.SECRET_KEY)
-            if (decoded.role !== role) {
+            const decoded = Jwt.verify(token, process.env.SECRET_KEY)
+            const decodedRole = await Role.findById(decoded.roles)
+
+            if (decodedRole.role !== role) {
                 return next(ErrorAPI.forbidden('Нет прав на выполнение операции'))
             }
+
 
             req.userInfo = decoded
             next()
@@ -26,3 +30,5 @@ export default function(role) {
         }
     }
 }
+
+export {checkRoleMiddleware}
