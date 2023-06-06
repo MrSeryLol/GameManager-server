@@ -7,7 +7,7 @@ const GameSchema = new Schema({
     description: { type: String },
     //images: [{ type: Schema.Types.ObjectId, ref: "Image" }],
     genres: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
-    userTags: [{ type: Schema.Types.ObjectId, ref: "UserTag" }],
+    //userTags: [{ type: Schema.Types.ObjectId, ref: "UserTag" }],
     users: [{ type: Schema.Types.ObjectId, ref: "User" }],
     type: [{ type: String, enum: ["Браузерная", "Компьютерная"]}]
 })

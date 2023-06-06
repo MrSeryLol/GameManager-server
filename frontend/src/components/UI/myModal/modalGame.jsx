@@ -20,7 +20,7 @@ const ModalGame = ({ visible, setVisible }) => {
 
     return (
         <div>
-            <Modal open={visible} onClose={() => setVisible(false)}>
+            <Modal open={visible} onClose={() => setVisible(false)} >
                 <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
                     <Box component="form" noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
@@ -59,15 +59,21 @@ const ModalGame = ({ visible, setVisible }) => {
                                         value={selectedGames}
                                         onChange={handleChange}
                                         renderValue={(selected) => (
-                                            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                            <div>
                                                 {selected.map((value) => (
-                                                    <Chip key={value} label={value} style={{ margin: '2px' }} />
-                                                ))}
+                                                <Chip key={value} label={value}/>
+                                            ))}
                                             </div>
+                                            
+                                            // <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                                // {selected.map((value) => (
+                                                //     <Chip key={value} label={value} style={{ margin: '2px' }} />
+                                                // ))}
+                                            // </div>
                                         )}
                                     >
                                         <MenuItem value="Не указано">
-                                            <em>None</em>
+                                            <em>Не указано</em>
                                         </MenuItem>
                                         <MenuItem value="genre1">Жанр 1</MenuItem>
                                         <MenuItem value="genre2">Жанр 2</MenuItem>
@@ -77,10 +83,10 @@ const ModalGame = ({ visible, setVisible }) => {
                             </Grid>
                         </Grid>
                     </Box>
-                    <Button variant="contained" color="primary" onClick={() => setVisible(false)}>
+                    <Button variant="contained" color="primary" onClick={() => setVisible(false)} sx={{mt: 2, mr: 2}}>
                         Закрыть
                     </Button>
-                    <Button variant="contained" color="primary" onClick={() => setVisible(false)}>
+                    <Button variant="contained" color="primary" onClick={() => setVisible(false)} sx={{mt: 2, mr: 2}}>
                         Создать
                     </Button>
                 </Box>

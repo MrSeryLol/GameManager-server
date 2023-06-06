@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from "react";
+import React, { useState, useRef, useMemo, useEffect, useContext } from "react";
 import Counter from "./components/counter";
 import "./styles/App.css"
 import PostItem from "./components/postItem";
@@ -26,6 +26,9 @@ import AppRouter from "./components/appRouter";
 import Header from "./components/header/header";
 import Sidebar from "./components/sidebar";
 import Navbar from "./components/header/navbar"
+import { observer } from "mobx-react-lite";
+import { Context } from ".";
+
 
 function App() {
     return(

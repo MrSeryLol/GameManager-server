@@ -27,6 +27,7 @@ const Authorization = observer(() => {
             data = await login(authLogin, authPassword)
             console.log(data)
             user.setUser(user)
+            console.log(user)
             user.setIsAuth(true);
             navigate("/")
         } catch (err) {

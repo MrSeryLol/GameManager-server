@@ -19,10 +19,10 @@ import { observer } from 'mobx-react-lite';
 
 const pages = ['Компьютерные игры', 'Браузерные игры'];
 const settings = [
-    {button: 'Профиль', link: "#"}, 
-    {button: 'Игровая компания', link: "/devpage"}, 
-    {button: "Админка", link: "/admin"}, 
-    {button: 'Выйти', link: ""}
+    { button: 'Профиль', link: "#" },
+    { button: 'Игровая компания', link: "/devpage" },
+    { button: "Админка", link: "/admin" },
+    { button: 'Выйти', link: "" }
 ];
 
 const Navbar = observer(() => {
@@ -35,6 +35,7 @@ const Navbar = observer(() => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
+        console.log(event.currentTarget)
         setAnchorElUser(event.currentTarget);
     };
 
@@ -45,6 +46,11 @@ const Navbar = observer(() => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const logout = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+    }
 
 
 
@@ -141,11 +147,18 @@ const Navbar = observer(() => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting, index) => (
-                                    <MenuItem component={Link} key={index} to={setting.link} onClick={handleCloseUserMenu}>
-                                        {setting.button}
-                                    </MenuItem>
-                                ))}
+                                <MenuItem component={Link} to={"#"} onClick={handleCloseNavMenu}>
+                                    Профиль
+                                </MenuItem>
+                                <MenuItem component={Link} to={"/devpage"} onClick={handleCloseNavMenu}>
+                                    Игровая компания
+                                </MenuItem>
+                                <MenuItem component={Link} to={"/admin"} onClick={handleCloseNavMenu}>
+                                    Админка
+                                </MenuItem>
+                                <MenuItem component={Link} to={"/"} onClick={() => logout()}>
+                                    Выйти
+                                </MenuItem>
                             </Menu>
                         </Box>
                         : <Box sx={{ flexGrow: 0 }}>
