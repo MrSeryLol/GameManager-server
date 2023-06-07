@@ -6,7 +6,7 @@ const developerController = new DeveloperController()
 
 router.post("/", authMiddleware, developerController.createDeveloper)
 router.get("/", authMiddleware, developerController.getDevPage)
-router.post("/creategame", developerController.createGame)
+router.post("/creategame", authMiddleware, developerController.createGame)
 
 //router.get("/devpage", developerController.getHomeInfo)
 // router.post('/registration', HomeController)

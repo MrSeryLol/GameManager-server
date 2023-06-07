@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Grid, Container, Box, Typography, Avatar, Paper } from '@mui/material';
 import { Fab, Menu, MenuItem } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { styled } from '@mui/material/styles';
 import GameList from "../components/gameList";
-import NewItemButton from "../components/fabForGame";
+import NewGameBtn from "../components/fabForGame";
 import ModalGame from "../components/UI/myModal/modalGame";
+import { observer } from "mobx-react-lite";
+import NewDeveloperBtn from "../components/tabForDeveloper";
+import ModalDeveloper from "../components/UI/myModal/modalDeveloper";
+import { Context } from "..";
+import { fetchGames } from "../API/developerAPI";
 
-const DevPage = () => {
-    const [modal, setModal] = React.useState(false)
+const DevPage = observer( () => {
+    const { game } = useContext(Context)
+    const { developer } = useContext(Context)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetchGames()
+            console.log("получили игры")
+            console.log(response.games)
+            developer.setGames(response.games)
+        }
+        fetchData()
+    }, [])
+
+    const [modalGame, setModalGame] = React.useState(false)
+    const [modalDeveloper, setModalDeveloper] = React.useState(false)
     const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [modal, setModal] = React.useState(false)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,45 +47,19 @@ const DevPage = () => {
     setOpen(true);
   };
 
-
-    const DeveloperAvatar = styled(Avatar)({
-        width: '150px',
-        height: '150px',
-        marginBottom: '16px',
-    });
-
     return (
         <div>
             <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column" }}>
                 <Typography variant="h4" align="center" gutterBottom>
                     Developer Page
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-                    <Paper sx={{ p: 3 }}>
-                        <DeveloperAvatar src="/path/to/avatar.jpg" alt="Developer Avatar" />
-                        <Typography variant="h6" gutterBottom>
-                            John Doe
-                        </Typography>
-                        <Typography variant="body1">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus, libero sed
-                            fermentum faucibus, ex ipsum fringilla mauris, nec sollicitudin metus ex vitae eros.
-                        </Typography>
-                    </Paper>
-                </Box>
                 <GameList />
             </Container>
-            <NewItemButton setVisible={setModal}/>
-            {/* <div className="btn__container" >
-                <Fab color="primary" aria-label="add" onClick={handleClick} sx={{ ml: "auto", float: "right" }}>
-                    <AddIcon />
-                </Fab>
-                <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-                    <MenuItem onClick={() => setModal(true)}>Create Game</MenuItem>
-                </Menu>
-            </div> */}
-            <ModalGame visible={modal} setVisible={setModal} />
+            <NewGameBtn setVisibleDeveloper={setModalDeveloper} setVisibleGame={setModalGame}/>
+            <ModalGame visible={modalGame} setVisible={setModalGame} />
+            <ModalDeveloper visible={modalDeveloper} setVisible={setModalDeveloper}/>
         </div>
     )
-}
+})
 
 export default DevPage;

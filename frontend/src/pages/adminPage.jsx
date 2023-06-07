@@ -32,14 +32,9 @@ const AdminPage = observer(() => {
 
     const { admin } = useContext(Context)
 
-    // useEffect(() => {
-    //     fetchGenres().then(data => admin.setGenres(data))
-    // }, [])
     const [expanded, setExpanded] = useState(null);
     const [newModerator, setNewModerator] = useState('');
-    const [newGame, setNewGame] = useState('');
     const [moderators, setModerators] = useState(['Moderator 1', 'Moderator 2', 'Moderator 3']);
-    const [games, setGames] = useState(['Game 1', 'Game 2', 'Game 3']);
 
     const handleAccordionChange = (panel) => async (event, isExpanded) => {
         setExpanded(isExpanded ? panel : null);
@@ -59,24 +54,17 @@ const AdminPage = observer(() => {
         }
     };
 
-    const handleAddGame = () => {
-        if (newGame.trim() !== '') {
-            setGames([...games, newGame]);
-            setNewGame('');
-        }
-    };
-
     const handleDeleteModerator = (index) => {
         const updatedModerators = [...moderators];
         updatedModerators.splice(index, 1);
         setModerators(updatedModerators);
     };
 
-    const handleDeleteGame = (index) => {
-        const updatedGames = [...games];
-        updatedGames.splice(index, 1);
-        setGames(updatedGames);
-    };
+    // const handleDeleteGame = (index) => {
+    //     const updatedGames = [...games];
+    //     updatedGames.splice(index, 1);
+    //     setGames(updatedGames);
+    // };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -114,31 +102,10 @@ const AdminPage = observer(() => {
                 </Accordion>
                 <Accordion expanded={expanded === 'games'} onChange={handleAccordionChange('games')} >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="games-content" id="games-header">
-                        <Typography variant="h6">Игры</Typography>
+                        <Typography variant="h6">Жанры</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <GenreList />
-                        {/* <List>
-                            {games.map((game, index) => (
-                                <ListItem key={index}>
-                                    <ListItemText primary={game} />
-                                    <IconButton onClick={() => handleDeleteGame(index)} edge="end" aria-label="delete">
-                                        <DeleteIcon />
-                                    </IconButton>
-                                </ListItem>
-                            ))}
-                            <ListItem>
-                                <TextField
-                                    label="Новая игра"
-                                    value={newGame}
-                                    onChange={(e) => setNewGame(e.target.value)}
-                                    variant="outlined"
-                                />
-                                <Button onClick={handleAddGame} variant="contained" color="primary">
-                                    Добавить
-                                </Button>
-                            </ListItem>
-                        </List> */}
                     </AccordionDetails>
                 </Accordion>
             </Container>
