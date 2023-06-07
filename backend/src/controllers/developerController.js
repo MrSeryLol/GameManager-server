@@ -1,8 +1,6 @@
 import ErrorAPI from '../error/errorAPI.js'
 import { Game } from "../models/game.js"
 import { Genre } from "../models/genre.js"
-import Jwt from 'jsonwebtoken'
-import { compare } from 'bcrypt'
 import { Developer } from '../models/developer.js'
 import { User } from '../models/user.js'
 
@@ -19,7 +17,6 @@ class DeveloperController {
     async getDevPage(req, res, next) {
         const userInfo = req.userInfo
         console.log(userInfo)
-        //const devInfo = await Game.find
         const devInfo = await Developer.findOne({ members: userInfo.user_id }, { games: 1 })
             .populate({
                 path: "games"

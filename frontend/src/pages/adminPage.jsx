@@ -1,32 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-    Typography,
-    List,
-    ListItem,
-    ListItemText,
-    IconButton,
-    ListItemIcon,
-    TextField,
-    Button,
-    Tabs,
-    Tab,
-    Box,
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    Container
-} from '@mui/material';
+import { Typography, List, ListItem, ListItemText, IconButton, TextField, Button,
+    Box, Accordion, AccordionDetails, AccordionSummary, Container } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 import { observer } from 'mobx-react-lite';
 import { Context } from '..';
 import { fetchGenres } from '../API/adminAPI';
 import GenreList from '../components/genreList';
-import { Link } from 'react-router-dom';
-import { toJS } from 'mobx';
 
 const AdminPage = observer(() => {
 
@@ -112,6 +92,5 @@ const AdminPage = observer(() => {
         </Box>
     );
 });
-
 
 export default AdminPage;

@@ -12,10 +12,6 @@ import { Context } from "..";
 
 const listGame = [1, 2, 3, 4, 5, 6]
 const Home = observer (() => {
-    const { game } = useContext(Context)
-
-
-
     return (
         <Container >
             <Sidebar />

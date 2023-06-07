@@ -1,23 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Grid, Container, Box, Typography, Avatar, Paper } from '@mui/material';
-import { Fab, Menu, MenuItem } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { styled } from '@mui/material/styles';
+import { Container, Typography} from '@mui/material';
 import GameList from "../components/gameList";
 import NewGameBtn from "../components/fabForGame";
 import ModalGame from "../components/UI/myModal/modalGame";
 import { observer } from "mobx-react-lite";
-import NewDeveloperBtn from "../components/tabForDeveloper";
 import ModalDeveloper from "../components/UI/myModal/modalDeveloper";
 import { Context } from "..";
 import { fetchGames } from "../API/developerAPI";
 
 const DevPage = observer( () => {
-    const { game } = useContext(Context)
     const { developer } = useContext(Context)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {

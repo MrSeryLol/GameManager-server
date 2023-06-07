@@ -1,20 +1,16 @@
 import { Avatar, Box, Button, Container, TextField, Typography, CssBaseline, Grid, Link } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../utils/constants';
 import { observer } from 'mobx-react-lite';
 import { login } from '../API/authAPI';
 import { Context } from '..';
-// import { login } from '../http/userAPI';
-// import { useUser } from '../store/store';
-
 
 const Authorization = observer(() => {
     const { user } = useContext(Context)
     const navigate = useNavigate()
     const location = useLocation()
-    const isLogin = location.pathname === LOGIN_ROUTE
 
     const [authLogin, setAuthLogin] = useState("")
     const [authPassword, setAuthPassword] = useState("")

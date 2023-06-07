@@ -1,6 +1,5 @@
 import React from "react";
-import { useState } from "react";
-import { Typography, Grid, Box, Container, List, ListSubheader, ListItemButton, ListItemText } from "@mui/material";
+import { Container, List, ListSubheader, ListItemButton, ListItemText } from "@mui/material";
 
 const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller'];
 

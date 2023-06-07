@@ -5,11 +5,9 @@ import ModalGame from './UI/myModal/modalGame';
 
 const NewGameBtn = ({setVisibleDeveloper, setVisibleGame}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [modal, setModal] = React.useState(false)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-
   };
 
   const handleClose = () => {

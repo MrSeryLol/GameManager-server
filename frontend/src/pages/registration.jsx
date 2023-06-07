@@ -23,8 +23,6 @@ const Registration = observer( () =>{
         e.preventDefault()
         data = await registration(registerLogin, registerPassword)
         console.log(data)
-        // user.setUser(user)
-        // user.setIsAuth(true);
         navigate("/")
         } catch(err) {
             alert(err.response.data.message)

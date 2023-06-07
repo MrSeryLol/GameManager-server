@@ -11,19 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/constants';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 
 const pages = ['Компьютерные игры', 'Браузерные игры'];
-const settings = [
-    { button: 'Профиль', link: "#" },
-    { button: 'Игровая компания', link: "/devpage" },
-    { button: "Админка", link: "/admin" },
-    { button: 'Выйти', link: "" }
-];
 
 const Navbar = observer(() => {
 
