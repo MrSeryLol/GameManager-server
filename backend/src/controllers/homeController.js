@@ -7,7 +7,7 @@ import { compare } from 'bcrypt'
 class HomeController {
     async getHomeInfo(req, res, next) {
         const genreList = await Genre.find({}, {genre: 1, _id: 0}).limit(5)
-        const gameList = await Game.find({}, {title: 1, _id: 0}).limit(10)
+        const gameList = await Game.find({}, {title: 1, _id: 1})
 
         const homeInfo = '{ "genres" : ' + JSON.stringify(genreList) + "," +
             '"games" : ' + JSON.stringify(gameList) + '}'

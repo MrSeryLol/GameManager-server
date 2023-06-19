@@ -6,9 +6,12 @@ import { Grid } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import { getHomeInfo } from "../API/homeAPI";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = observer (() => {
     const { home } = useContext(Context)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchHomeInfo()
@@ -27,7 +30,7 @@ const Home = observer (() => {
                 {home.games.map((game, index) => (
                     <Grid item xs={6} sm={4} md={3} key={index}>
                         <List>
-                            <ListItemButton >
+                            <ListItemButton onClick={() => navigate(`/game/${game._id}`)}>
                                 <ListItemText primary={game.title} />
                             </ListItemButton>
                         </List>
