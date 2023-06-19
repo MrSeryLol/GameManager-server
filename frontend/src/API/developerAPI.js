@@ -12,3 +12,8 @@ export const fetchGames = async () => {
     console.log(data.devInfo)
     return data.devInfo
 }
+
+export const fetchGenres = async () => {
+    const { data } = await $authHost.get("devpage/genres")
+    return data
+}

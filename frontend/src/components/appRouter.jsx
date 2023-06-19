@@ -21,7 +21,7 @@ const AppRouter = observer(() => {
             <Route path="/" element={<Home/>}/>
             <Route path="/registration" element={<Registration/>}/>
             <Route path="/login" element={<Authorization/>}/>
-            { user.isAuth && <Route path="/devpage" element={<DevPage/>}/> }
+            <Route path="/devpage" element={<DevPage/>}/>
             <Route path="/admin" element={<AdminPage/>}/>
             <Route path="/game/:id" element={<GamePage/>}/>
             <Route path="/error" element={<Error/>}/>

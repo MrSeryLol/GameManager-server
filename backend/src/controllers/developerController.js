@@ -26,6 +26,14 @@ class DeveloperController {
         return res.json({devInfo})
     }
 
+    async getGenres(req, res, next) {
+        const genres = await Genre.find({}, {genre: 1, _id: 0})
+        console.log(genres)
+
+        res.json({ genres })
+
+    }
+
     async createGame(req, res, next) {
         const { title, description, genres, type } = req.body
         const userInfo = req.userInfo

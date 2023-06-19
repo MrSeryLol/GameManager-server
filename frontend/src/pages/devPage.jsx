@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Typography} from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import GameList from "../components/gameList";
 import NewGameBtn from "../components/fabForGame";
 import ModalGame from "../components/UI/myModal/modalGame";
@@ -9,15 +8,19 @@ import ModalDeveloper from "../components/UI/myModal/modalDeveloper";
 import { Context } from "..";
 import { fetchGames } from "../API/developerAPI";
 
-const DevPage = observer( () => {
+const DevPage = observer(() => {
     const { developer } = useContext(Context)
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetchGames()
             console.log("получили игры")
-            console.log(response.games)
-            developer.setGames(response.games)
+            if (response) {
+                developer.setGames(response.games)
+            }
+            else {
+                developer.setGames([])
+            }
         }
         fetchData()
     }, [])
@@ -26,19 +29,19 @@ const DevPage = observer( () => {
     const [modalDeveloper, setModalDeveloper] = React.useState(false)
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
     return (
         <div>
@@ -48,9 +51,9 @@ const DevPage = observer( () => {
                 </Typography>
                 <GameList />
             </Container>
-            <NewGameBtn setVisibleDeveloper={setModalDeveloper} setVisibleGame={setModalGame}/>
+            <NewGameBtn setVisibleDeveloper={setModalDeveloper} setVisibleGame={setModalGame} />
             <ModalGame visible={modalGame} setVisible={setModalGame} />
-            <ModalDeveloper visible={modalDeveloper} setVisible={setModalDeveloper}/>
+            <ModalDeveloper visible={modalDeveloper} setVisible={setModalDeveloper} />
         </div>
     )
 })

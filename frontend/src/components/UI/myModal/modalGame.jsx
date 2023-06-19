@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Modal, Box, Grid, TextField, MenuItem, FormControl, InputLabel, Select, Chip } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { fetchGenres } from '../../../API/adminAPI';
+import { fetchGenres } from '../../../API/developerAPI';
 import { Context } from '../../..';
 import { createGame } from '../../../API/developerAPI';
 import { useNavigate } from 'react-router-dom';
