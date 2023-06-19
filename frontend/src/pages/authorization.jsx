@@ -25,6 +25,7 @@ const Authorization = observer(() => {
             user.setUser(user)
             console.log(user)
             user.setIsAuth(true);
+            console.log(user.isAuth)
             navigate("/")
         } catch (err) {
             alert(err)

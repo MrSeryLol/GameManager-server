@@ -21,6 +21,7 @@ const Home = observer (() => {
         const data = await getHomeInfo();
         home.setGames(data.games)
         home.setGenres(data.genres)
+        console.log(localStorage)
     }
 
     return (

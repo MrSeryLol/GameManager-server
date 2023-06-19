@@ -63,6 +63,14 @@ class AuthController {
             next(ErrorAPI.badRequest("Login error" + err))
         }
     }
+
+    async check(req, res, next) {
+        const token = generateAccessToken(req.userInfo.user_id, req.userInfo.roles)
+
+
+
+        res.json({ token })
+    }
 }
 
 export default AuthController;

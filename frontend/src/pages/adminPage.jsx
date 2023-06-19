@@ -47,6 +47,7 @@ const AdminPage = observer(() => {
     // };
 
     return (
+        
         <Box sx={{ flexGrow: 1 }}>
             <Container>
                 <Typography variant="h4" align="center" gutterBottom>
@@ -90,6 +91,7 @@ const AdminPage = observer(() => {
                 </Accordion>
             </Container>
         </Box>
+                            
     );
 });
 

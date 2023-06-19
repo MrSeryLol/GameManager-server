@@ -45,8 +45,6 @@ const Navbar = observer(() => {
         user.setIsAuth(false)
     }
 
-
-
     return (
         <AppBar position="static" sx={{ backgroundColor: "#1e082b" }}>
             <Container maxWidth="xl">
