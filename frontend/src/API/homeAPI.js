@@ -1,9 +1,9 @@
 import { $authHost, $host } from "./index.js";
 import jwt_decode from "jwt-decode"
 
-export const getIngo = async() =>{
-    const response = await $host.get("/")
-    return response
+export const getHomeInfo = async() =>{
+    const { data } = await $host.get("/")
+    return data
 }
 
 // export const registration = async(login, password) => {
