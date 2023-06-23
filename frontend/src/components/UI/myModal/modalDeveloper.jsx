@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button, Modal, Box, Grid, TextField, MenuItem, FormControl, InputLabel, Select, Chip } from '@mui/material';
+import React, {useState} from 'react';
+import { Button, Modal, Box, Grid, TextField } from '@mui/material';
 
 const ModalDeveloper = ({ visible, setVisible }) => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     console.log(visible)
-    const [selectedGames, setSelectedGames] = React.useState([]);
+    const [selectedGames, setSelectedGames] = useState([]);
 
     const handleChange = (event) => {
         setSelectedGames(event.target.value);

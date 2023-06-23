@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Container, Typography } from '@mui/material';
-import GameList from "../components/gameList";
+import GameList from "../components/lists/gameList";
 import NewGameBtn from "../components/fabForGame";
 import ModalGame from "../components/UI/myModal/modalGame";
 import { observer } from "mobx-react-lite";

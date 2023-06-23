@@ -3,9 +3,9 @@ import { useContext, useState } from "react";
 import { Context } from "..";
 import { List, ListItem, ListItemText, IconButton, TextField, Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { createGenre, fetchGenres } from "../API/adminAPI";
+import { createGenre, deleteGenre, fetchGenres } from "../API/adminAPI";
 
-const GenreList = observer( () => {
+const ModeratorList = observer( () => {
     const {admin} = useContext(Context)
 
     const [newGenre, setNewGenre] = useState("");
@@ -23,13 +23,23 @@ const GenreList = observer( () => {
         admin.setGenres(response.genres)
     };
 
+    const handleDeleteGenre = async(genreId, e) => {
+        const deleteGenreResponse = await deleteGenre(genreId)
+        console.log(deleteGenreResponse)
+
+        const response = await fetchGenres()
+        admin.setGenres(response.genres)
+
+        alert(`Жанр ${deleteGenreResponse.genre} был удалён!`)
+    }
+
     return (
         <List>
             {admin.genres.map((item, index) => (
                 <ListItem key={index}>
                     <ListItemText primary={item.genre} />
                     <IconButton 
-                    //onClick={() => handleDeleteGame(index)} 
+                    onClick={(e) => handleDeleteGenre(item._id, e)}
                     edge="end" 
                     aria-label="delete">
                         <DeleteIcon />
@@ -51,4 +61,4 @@ const GenreList = observer( () => {
     )
 })
 
-export default GenreList;
+export default ModeratorList;

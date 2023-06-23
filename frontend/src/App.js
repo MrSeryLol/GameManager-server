@@ -16,7 +16,12 @@ const App = observer(() => {
         check().then(data => {
             user.setUser(true)
             user.setIsAuth(true)
+            user.setRoles(data.roles)
+            console.log(data.roles)
         })
+        .catch((err) => {
+            console.log(err)
+        }) 
     }, [])
 
 

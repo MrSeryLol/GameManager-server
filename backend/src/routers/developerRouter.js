@@ -9,8 +9,4 @@ router.get("/", authMiddleware, developerController.getDevPage)
 router.get("/genres", authMiddleware, developerController.getGenres)
 router.post("/creategame", authMiddleware, developerController.createGame)
 
-//router.get("/devpage", developerController.getHomeInfo)
-// router.post('/registration', HomeController)
-// router.post('/login', authController.login)
-
 export const developerRouter = router;

@@ -46,10 +46,11 @@ class DeveloperController {
 
         const user = await User.findById(userInfo.user_id)
 
-        const devCandidate = await Developer.findOne({ name: user.login })
+        let devCandidate = await Developer.findOne({ name: user.login })
 
         if (!devCandidate) {
             const developer = new Developer({ name: user.login, members: [userInfo.user_id], games: [newGame] })
+            devCandidate = developer
             await developer.save()
         }
 

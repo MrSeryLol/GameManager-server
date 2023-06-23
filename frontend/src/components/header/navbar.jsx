@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,15 +21,18 @@ const pages = ['Компьютерные игры', 'Браузерные игр
 const Navbar = observer(() => {
 
     const { user } = useContext(Context)
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
-        console.log(event.currentTarget)
+        console.log("Нажал")
         setAnchorElUser(event.currentTarget);
+        console.log(isAdmin)
+        checkAdmin()
     };
 
     const handleCloseNavMenu = () => {
@@ -43,6 +46,19 @@ const Navbar = observer(() => {
     const logout = () => {
         user.setUser({})
         user.setIsAuth(false)
+        user.setRoles([])
+        localStorage.clear();
+    }
+
+    const checkAdmin = () => {
+        for (let i = 0; i < user.roles.length; i++) {
+            if (user.roles[i].role === "ADMIN") {
+                console.log("Это админ")
+                setIsAdmin(true)
+                return
+            }
+            setIsAdmin(false)
+        }
     }
 
     return (
@@ -144,9 +160,11 @@ const Navbar = observer(() => {
                                 <MenuItem component={Link} to={"/devpage"} onClick={handleCloseNavMenu}>
                                     Игровая компания
                                 </MenuItem>
-                                <MenuItem component={Link} to={"/admin"} onClick={handleCloseNavMenu}>
-                                    Админка
-                                </MenuItem>
+                                {isAdmin && 
+                                    <MenuItem component={Link} to={"/admin"} onClick={handleCloseNavMenu}>
+                                        Админка
+                                    </MenuItem>
+                                }
                                 <MenuItem component={Link} to={"/"} onClick={() => logout()}>
                                     Выйти
                                 </MenuItem>

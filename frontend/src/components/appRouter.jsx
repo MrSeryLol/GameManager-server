@@ -7,15 +7,9 @@ import Authorization from "../pages/authorization";
 import DevPage from "../pages/devPage";
 import AdminPage from "../pages/adminPage";
 import GamePage from "../pages/gamePage";
-import { Context } from "..";
-import { observer } from "mobx-react-lite";
 
-const AppRouter = observer(() => {
-    const { user } = useContext(Context)
+const AppRouter = () => {
 
-    useEffect(() => {
-        console.log(user.isAuth)
-    }, [])
     return(
         <Routes>
             <Route path="/" element={<Home/>}/>
@@ -28,6 +22,6 @@ const AppRouter = observer(() => {
             <Route path="*" element={<Navigate to="/error" replace />}/>
         </Routes>
     )
-});
+};
 
 export default AppRouter;

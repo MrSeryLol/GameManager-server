@@ -4,8 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ModalGame from './UI/myModal/modalGame';
 
 const NewDeveloperBtn = ({setVisible}) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  //const [modal, setModal] = React.useState(false)
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,7 +15,7 @@ const NewDeveloperBtn = ({setVisible}) => {
     setAnchorEl(null);
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);

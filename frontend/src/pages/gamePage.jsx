@@ -25,7 +25,6 @@ const GamePage = observer(() => {
 
     const openGame = () => {
         window.open("https://yandex.ru/games/app/221796#app-id=221796&catalog-session-uid=catalog-6dd0ded5-cd4d-55f3-99a1-0e7ee6ce44af-1687173142194-fe8a&rtx-reqid=7927670079327225463&pos=%7B%22listType%22%3A%22suggested%22%2C%22tabCategory%22%3A%22tag%22%7D", "_blank")
-        //navigate("https://yandex.ru/games/app/221796#app-id=221796&catalog-session-uid=catalog-6dd0ded5-cd4d-55f3-99a1-0e7ee6ce44af-1687173142194-fe8a&rtx-reqid=7927670079327225463&pos=%7B%22listType%22%3A%22suggested%22%2C%22tabCategory%22%3A%22tag%22%7D")
         console.log("ОТкрыл игру")
     }
 

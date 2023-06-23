@@ -2,7 +2,7 @@ import ErrorAPI from "../error/errorAPI.js"
 import Jwt from "jsonwebtoken"
 import { Role } from "../models/role.js"
 
-function checkRoleMiddleware(role) {
+function checkRoleMiddleware(roles) {
     return async function (req, res, next) {
         if (req.method === 'OPTIONS') {
             next()
@@ -15,12 +15,18 @@ function checkRoleMiddleware(role) {
             }
 
             const decoded = Jwt.verify(token, process.env.SECRET_KEY)
-            const decodedRole = await Role.findById(decoded.roles)
 
-            if (decodedRole.role !== role) {
+            console.log(decoded.roles)
+            const decodedRoles = decoded.roles.map(item => {
+                return item.role
+            })
+
+            const neededRoles = decodedRoles.toString() === roles.toString()
+
+            if (!neededRoles) {
+                console.log("Роли разные")
                 return next(ErrorAPI.forbidden('Нет прав на выполнение операции'))
             }
-
 
             req.userInfo = decoded
             next()

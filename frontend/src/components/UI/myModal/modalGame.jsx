@@ -4,7 +4,6 @@ import { observer } from 'mobx-react-lite';
 import { fetchGenres } from '../../../API/developerAPI';
 import { Context } from '../../..';
 import { createGame } from '../../../API/developerAPI';
-import { useNavigate } from 'react-router-dom';
 
 const ModalGame = observer(({ visible, setVisible }) => {
 

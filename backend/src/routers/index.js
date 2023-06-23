@@ -10,7 +10,7 @@ const router = new Router();
 
 router.use("/", homeRouter)
 router.use("/auth", authRouter)
-router.use("/admin", checkRoleMiddleware("ADMIN"), adminRouter)
+router.use("/admin", checkRoleMiddleware(["ADMIN"]), adminRouter)
 router.use("/devpage", developerRouter)
 router.use("/game", gameRouter)
 
